@@ -1,0 +1,28 @@
+public class Solution {
+
+	public static int countMinStepsToOne(int n) {
+		//Your code goes here
+        if(n==1){
+            return 0;
+        }
+        int op1=n-1;
+        int ans1=countMinStepsToOne(op1);
+        int ans=ans1;
+        if(n%2==0){
+            int op2=n/2;
+            int ans2=countMinStepsToOne(op2);
+            if(ans>ans2){
+                ans=ans2;
+            }
+        } 
+        if(n%3==0){
+            int op3=n/3;
+            int ans3=countMinStepsToOne(op3);
+            if(ans>ans3){
+                ans=ans3;
+            }
+        }   
+        return ans+1;
+	}
+
+}
