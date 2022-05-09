@@ -1,0 +1,68 @@
+public class Solution {
+
+	public static long staircase(int n) {
+		//Your code goes here
+        // if(n<0){
+        //     return 0;
+        // }
+        // if(n==0){
+        //     return 1;
+        // }
+        // long op1=staircase(n-1);
+        // long op2=staircase(n-2);
+        // long op3=staircase(n-3);
+        // return op1+op2+op3;
+        
+        
+        
+        
+//         long storage[]=new long[n+1];
+//         return staircase(n,storage);
+// 	}
+
+//     public static long staircase(int n,long storage[]){
+//         if(n==0 || n==1){
+//             storage[n]=1;
+//             return storage[n];
+//         }
+//         if(storage[n]!=0){
+//             return storage[n];
+     
+//         }
+//         long op1=staircase(n-1,storage);
+//         long op2=0;
+//         long op3=0;
+//         if(n-2>=0){
+//             op2=staircase(n-2,storage);
+//         }
+//         if(n-3>=0){
+//             op3=staircase(n-3,storage);
+//         }
+//         storage[n]=op1+op2+op3;
+//         return storage[n];
+//     }
+        
+        
+        
+        
+        
+        
+        long storage[]=new long[n+1];
+        storage[0]=1;
+        storage[1]=1;
+        for(int i=2;i<n+1;i++){
+            long op1=storage[i-1];
+            long op2=0;
+            long op3=0;
+            if(i-2>=0){
+                op2=storage[i-2];
+            }
+            if(i-3>=0){
+                op3=storage[i-3];
+            }
+            storage[i]=op1+op2+op3;
+        }
+        return storage[n];
+    }
+        
+}
