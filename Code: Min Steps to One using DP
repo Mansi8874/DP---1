@@ -1,0 +1,60 @@
+public class Solution {
+
+	public static int countMinStepsToOne(int n) {
+		//Your code goes here
+        
+        //Memoization
+        
+        int storage[] = new int[n+1];
+        return countMinStepsToOne(n,storage);
+	}
+    public static int countMinStepsToOne(int n,int storage[]){
+        if(n==1){
+            storage[n]=0;
+            return storage[n];
+        }
+        if(storage[n]!=0){
+            return storage[n];
+        }
+        int ans1=countMinStepsToOne(n-1,storage);
+        int ans=ans1;
+        if(n%2==0){
+            int ans2=countMinStepsToOne(n/2,storage);
+            if(ans>ans2){
+                ans=ans2;
+            }
+        }
+        if(n%3==0){
+            int ans3=countMinStepsToOne(n/3,storage);
+            if(ans>ans3){
+                ans=ans3;
+            }
+        }
+        storage[n]=ans+1;
+        return storage[n];
+        
+    }
+        
+        //DP
+        
+        
+        //  int storage[]= new int[n+1];
+        // storage[1]=0;
+        // for(int i=2;i<=n;i++){
+        //     int ans=storage[i-1];
+        //     if(i%2==0){
+        //         if(ans>storage[i/2]){
+        //             ans=storage[i/2];
+        //         }
+        //     }
+        //     if(i%3==0){
+        //         if(ans>storage[i/3]){
+        //             ans=storage[i/3];
+        //         }
+        //     }
+        //     storage[i]=ans+1;
+        // }
+        // return storage[n];
+        
+        
+}
