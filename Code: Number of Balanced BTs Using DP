@@ -1,0 +1,58 @@
+public class Solution {
+
+	public static int balancedBTs(int height){
+
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+//         int storage[] =new int[height+1];
+//         for(int i=0;i<storage.length;i++){
+//             storage[i]=-1;
+//         }
+//         int mod=(int)Math.pow(10,9)+7;
+//         return countBalancedBts(height,mod,storage);
+// 	}
+//     public static int countBalancedBts(int h,int mod,int storage[]){
+//         if(h==0 || h==1){
+//            storage[h]=1;
+//             return storage[h];
+//         }
+//         if(storage[h]!=-1){
+//             return storage[h];
+//         }
+//         int x=countBalancedBts(h-1,mod,storage);
+//         int y=countBalancedBts(h-2,mod,storage);
+//         long res1=(long)x*x;
+//         long res2=(long)x*y*2;
+//         int value1=(int)(res1 % mod);
+//         int value2=(int)(res2 % mod);
+//         storage[h]= (value1+value2) % mod;
+//         return storage[h];
+        
+// 	}
+        if(height==0 || height==1){
+            return 1;
+        }
+        if(height==2){
+            return 3;
+        }
+        int storage[] =new int[height+1];
+        storage[0]=1;
+        storage[1]=1;
+        storage[2]=3;
+        int mod=(int)Math.pow(10,9)+7;
+        for(int i=3;i<storage.length;i++){
+            int x=storage[i-1];
+            int y=storage[i-2];
+            long res1=(long)x*x;
+            long res2=(long)x*y*2;
+            int value1=(int)(res1 % mod);
+            int value2=(int)(res2 %  mod);
+            storage[i]=(value1+value2)%mod;
+        }
+        return storage[height];   
+    }   
+}
