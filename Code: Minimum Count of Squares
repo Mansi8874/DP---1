@@ -1,0 +1,63 @@
+public class Solution {
+
+	public static int minCount(int n) {
+		//Your code goes here
+        
+        
+//         if(n==1 || n==2 || n==3 || n==0){
+//             return n;
+//         }
+        
+//         int ans=n;
+//         for(int i=1;i<=Math.sqrt(n);i++){
+//             int ans1=1+minCount(n-(i*i));
+//             ans=Math.min(ans,ans1);
+//             // if(ans>ans1){
+//             //     ans=ans1;
+//             // }
+//         }
+//         return ans;
+        
+        
+//         int storage[]=new int[n+1];
+//         return minCount(n,storage);
+    
+// 	}
+    
+//     public static int minCount(int n,int storage[]){
+//         if(n==1 || n==2 || n==3 || n==0){
+//             storage[n]=n;
+//             return storage[n];
+//         }
+//         if(storage[n]!=0){
+//             return storage[n];
+//         }
+//         int ans=n;
+//         for(int i=1;i<=Math.sqrt(n);i++){
+//             int ans1=1+minCount(n-(i*i),storage);
+//             ans=Math.min(ans,ans1);
+//         }
+//         storage[n]=ans;
+//         return storage[n];
+//     }
+        
+        int storage[]=new int[n+1];
+        if(n<=3){
+            return n;
+        }
+        storage[0]=0;
+        storage[1]=1;
+        storage[2]=2;
+        storage[3]=3;
+        
+        for(int i=4;i<=n;i++){
+            int ans=i;
+            for(int j=1;j<=Math.sqrt(i);j++){
+                int ans1=1+storage[i-j*j];
+                ans=Math.min(ans,ans1);
+            }
+            storage[i]=ans;
+        }
+        return storage[n];
+    }
+}
